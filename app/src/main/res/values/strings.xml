@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ImageFree</string>
+    <string name="edit_txt_hint_search">Search free high-resolution photos</string>
 </resources>
