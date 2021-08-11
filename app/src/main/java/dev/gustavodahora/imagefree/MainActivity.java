@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -30,7 +31,24 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         RecyclerView rvMain = findViewById(R.id.rv_main);
+
+        ImageButton btnFeed = findViewById(R.id.btn_img_feed);
+        ImageButton btnGrid = findViewById(R.id.btn_img_grid);
+
         rvMain.setLayoutManager(new LinearLayoutManager(this));
+        btnFeed.setColorFilter(getResources().getColor(R.color.gray));
+
+        btnFeed.setOnClickListener(v -> {
+            btnFeed.setColorFilter(getResources().getColor(R.color.gray));
+            btnGrid.setColorFilter(getResources().getColor(R.color.light_gray));
+            rvMain.setLayoutManager(new LinearLayoutManager(this));
+        });
+
+        btnGrid.setOnClickListener(v -> {
+            btnGrid.setColorFilter(getResources().getColor(R.color.gray));
+            btnFeed.setColorFilter(getResources().getColor(R.color.light_gray));
+            rvMain.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        });
 
         List<MainItem> mainItems = new ArrayList<>();
 
@@ -53,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         rvMain.setAdapter(adapter);
 
-//        rvMain.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
     @Override

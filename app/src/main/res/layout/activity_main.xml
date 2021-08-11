@@ -11,26 +11,51 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="10dp"
         tools:context=".MainActivity">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_txt_search"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/edit_txt_hint_search"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_img_feed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/ic_baseline_search_24">
+            app:startIconDrawable="@drawable/ic_baseline_search_24"
+            android:layout_marginEnd="5dp"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:contentDescription="@string/feed"
+            android:id="@+id/btn_img_feed"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/ic_baseline_view_list_24"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_txt_search"
+            app:layout_constraintEnd_toStartOf="@id/btn_img_grid"
+            app:layout_constraintTop_toTopOf="@+id/edit_txt_search"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:contentDescription="@string/grid"
+            android:id="@+id/btn_img_grid"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/ic_baseline_dashboard_24"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_txt_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edit_txt_search" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_main"
@@ -40,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_txt_search"
+            app:layout_constraintTop_toBottomOf="@id/btn_img_feed"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="62dp"
             tools:listitem="@layout/image_view_feed" />
