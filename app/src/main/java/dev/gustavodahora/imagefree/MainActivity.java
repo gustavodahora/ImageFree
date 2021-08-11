@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +37,23 @@ public class MainActivity extends AppCompatActivity {
         mainItems.add(new MainItem(1, R.drawable.insta_1));
         mainItems.add(new MainItem(2, R.drawable.insta_2));
         mainItems.add(new MainItem(3, R.drawable.insta_3));
-        mainItems.add(new MainItem(4, R.drawable.insta_4));
+        mainItems.add(new MainItem(4, R.drawable.insta_9));
         mainItems.add(new MainItem(5, R.drawable.insta_5));
         mainItems.add(new MainItem(6, R.drawable.insta_6));
+        mainItems.add(new MainItem(7, R.drawable.insta_7));
+        mainItems.add(new MainItem(8, R.drawable.insta_8));
+        mainItems.add(new MainItem(9, R.drawable.insta_4));
 
-        MainAdapter adapter = new MainAdapter(mainItems);
+        // Java slowing.
+//        mainItems.add(new MainItem(10, R.drawable.insta_10));
+//        mainItems.add(new MainItem(11, R.drawable.insta_11));
+//        mainItems.add(new MainItem(12, R.drawable.insta_12));
+
+        MainAdapter adapter = new MainAdapter(mainItems, getApplicationContext());
 
         rvMain.setAdapter(adapter);
+
+//        rvMain.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
     @Override
@@ -48,9 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     public class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
         private final List<MainItem> mainItems;
+        private final Context context;
 
-        public MainAdapter(List<MainItem> mainItems) {
+        public MainAdapter(List<MainItem> mainItems, Context context) {
             this.mainItems = mainItems;
+            this.context = context;
         }
 
         @NonNull
@@ -62,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
             MainItem mainItemCurrent = mainItems.get(position);
-            holder.bind(mainItemCurrent);
+            holder.bind(mainItemCurrent, context);
         }
 
         @Override
@@ -77,10 +94,18 @@ public class MainActivity extends AppCompatActivity {
             super(itemView);
         }
 
-        public void bind(MainItem item) {
+        public void bind(MainItem item, Context context) {
             ImageView currentImage = itemView.findViewById(R.id.img_main);
 
-            currentImage.setImageResource(item.getImage());
+            // To use glide or picasso for compress a file or to get a file from URL.
+            // Do not use to compress.
+            Glide.with(context)
+                    .load(Uri.parse("android.resource://dev.gustavodahora.imageFree" + item.getImage()))
+                    .centerCrop()
+                    .placeholder(item.getImage())
+                    .into(currentImage);
+
+//            currentImage.setImageResource(item.getImage());
         }
     }
 }
