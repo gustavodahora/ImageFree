@@ -5,15 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+        android:id="@+id/img_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/light_gray"
+        android:src="@drawable/insta_1"
+        android:scaleType="centerInside"
         android:contentDescription="@string/image_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="5dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

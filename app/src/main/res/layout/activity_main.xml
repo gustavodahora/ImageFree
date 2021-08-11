@@ -31,6 +31,7 @@
         android:layout_width="390dp"
         android:layout_height="649dp"
         tools:layout_editor_absoluteX="1dp"
+        android:layout_marginTop="30dp"
         tools:layout_editor_absoluteY="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
